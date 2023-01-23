@@ -138,6 +138,6 @@ class Api {
   }
   }
   // Замените на адрес вашего бэкенда
-  const api = new Api('http://api.mesto.ruslanyar.nomoredomains.rocks');
+  const api = new Api('https://api.mesto.ruslanyar.nomoredomains.rocks');
 
   export default api;
