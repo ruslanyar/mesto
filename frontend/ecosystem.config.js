@@ -1,22 +1,26 @@
+require('dotenv').config({ path: './.env.deploy'});
+
+const {
+  DEPLOY_USER,
+  DEPLOY_HOST,
+  DEPLOY_REF,
+  DEPLOY_PATH,
+} = process.env;
+
 module.exports = {
   apps : [{
-    script: 'index.js',
-    watch: '.'
-  }, {
-    script: './service-worker/',
-    watch: ['./service-worker']
+    name: 'app-frontend',
   }],
 
   deploy : {
     production : {
-      user : 'SSH_USERNAME',
-      host : 'SSH_HOSTMACHINE',
-      ref  : 'origin/master',
-      repo : 'GIT_REPOSITORY',
-      path : 'DESTINATION_PATH',
-      'pre-deploy-local': '',
-      'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production',
-      'pre-setup': ''
+      user : DEPLOY_USER,
+      host : DEPLOY_HOST,
+      ref  : DEPLOY_REF,
+      repo : 'git@github.com:ruslanyar/web-plus-pm2-deploy.git',
+      path : DEPLOY_PATH,
+      'pre-deploy-local': `scp ./.env ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/source/frontend`,
+      'post-deploy' : 'cd ../source/frontend && npm i && npm run build && pm2 reload ecosystem.config.js',
     }
   }
 };
