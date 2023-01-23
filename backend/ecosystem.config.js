@@ -23,9 +23,9 @@ module.exports = {
       repo: 'git@github.com:ruslanyar/web-plus-pm2-deploy.git',
       path: DEPLOY_PATH,
       'pre-deploy-local': `scp ./.env ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/source/backend`,
-      // 'post-deploy': 'cd backend && pwd && whoami && echo $PATH',
+      'post-deploy': 'nvm which current && pwd && whoami && echo $PATH',
       // eslint-disable-next-line max-len
-      'post-deploy': 'cd backend && npm i && npm run build && pm2 reload ecosystem.config.js',
+      // 'post-deploy': 'cd backend && npm i && npm run build && pm2 reload ecosystem.config.js',
     },
   },
 };
