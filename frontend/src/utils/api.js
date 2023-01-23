@@ -1,9 +1,3 @@
-import * as dotenv from 'dotenv';
-
-dotenv.config();
-
-const { BASE_URL = 'http://localhost:3000' } = process.env;
-
 const getResponse = (res) => {
     return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 }
@@ -144,6 +138,6 @@ class Api {
   }
   }
   // Замените на адрес вашего бэкенда
-  const api = new Api(BASE_URL);
+  const api = new Api('http://api.mesto.ruslanyar.nomoredomains.rocks');
 
   export default api;
