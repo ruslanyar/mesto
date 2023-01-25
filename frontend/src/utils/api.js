@@ -137,7 +137,7 @@ class Api {
       .then(getResponse)
   }
   }
-  // Замените на адрес вашего бэкенда
-  const api = new Api('https://api.mesto.ruslanyar.nomoredomains.rocks');
+
+  const api = new Api(`${window.location.protocol}//api.mesto.ruslanyar.nomoredomains.rocks`);
 
   export default api;
