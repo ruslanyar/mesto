@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import express from 'express';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
@@ -8,14 +9,8 @@ import { DB_ADDRESS, PORT } from './config';
 import routes from './routes';
 
 const app = express();
-mongoose.connect(DB_ADDRESS);
+app.use(cors());
 
-app.use(cors({
-  origin: [
-    'http://mesto.ruslanyar.nomoredomains.rocks',
-    'https://mesto.ruslanyar.nomoredomains.rocks',
-  ],
-}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -23,5 +18,10 @@ app.use(routes);
 app.use(errors());
 app.use(errorHandler);
 
-// eslint-disable-next-line no-console
-app.listen(PORT, () => console.log('ok'));
+mongoose
+  .connect(DB_ADDRESS)
+  .then(() => console.log(`Connected to database ${DB_ADDRESS}`))
+  .then(() => {
+    app.listen(PORT, () => console.log(`App listening on port: ${PORT}`));
+  })
+  .catch((err) => console.error(err));
