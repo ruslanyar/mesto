@@ -1,7 +1,7 @@
 {
-  "name": "web_canonicals_ru",
+  "name": "mesto_backend",
   "version": "1.0.0",
-  "description": "Yandex.Praktikum canonical projects",
+  "description": "",
   "main": "app.js",
   "scripts": {
     "build": "tsc",
