@@ -9,7 +9,12 @@ import { DB_ADDRESS, PORT } from './config';
 import routes from './routes';
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: /vercel\.app$/,
+    credentials: true,
+  }),
+);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
