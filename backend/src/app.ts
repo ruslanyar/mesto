@@ -5,13 +5,13 @@ import cookieParser from 'cookie-parser';
 import { errors } from 'celebrate';
 import cors from 'cors';
 import errorHandler from './middlewares/error-handler';
-import { DB_ADDRESS, PORT } from './config';
+import { ALLOWED_URL, DB_ADDRESS, PORT } from './config';
 import routes from './routes';
 
 const app = express();
 app.use(
   cors({
-    origin: /vercel\.app$/,
+    origin: ALLOWED_URL,
     credentials: true,
   }),
 );
