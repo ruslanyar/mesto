@@ -132,6 +132,6 @@ class Api {
   }
 }
 
-const api = new Api(`${window.location.protocol}//${apiUrl}`);
+const api = new Api(`http://${apiUrl}`);
 
 export default api;
